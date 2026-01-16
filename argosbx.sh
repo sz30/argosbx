@@ -442,8 +442,21 @@ echo "$port_hy2" > "$HOME/agsbx/port_hy2"
 elif [ -n "$port_hy2" ]; then
 echo "$port_hy2" > "$HOME/agsbx/port_hy2"
 fi
+if [ -n "$hy2obfs" ]; then
+    obfs_config=",
+        \"obfs\": {
+            \"type\": \"salamander\",
+            \"password\": \"${hy2obfs}\"
+        }"
+    echo "Hysteria2混淆密码：${hy2obfs}"
+else
+    obfs_config=""
+    echo "Hysteria2混淆：未启用"
+fi
+
 port_hy2=$(cat "$HOME/agsbx/port_hy2")
 echo "Hysteria2端口：$port_hy2"
+
 cat >> "$HOME/agsbx/sb.json" <<EOF
     {
         "type": "hysteria2",
@@ -468,15 +481,6 @@ cat >> "$HOME/agsbx/sb.json" <<EOF
 EOF
 else
 hyp=hyptargo
-fi
-if [ -n "$hy2obfs" ]; then
-    obfs_config=",
-        \"obfs\": {
-            \"type\": \"salamander\",
-            \"password\": \"${hy2obfs}\"
-        }"
-else
-    obfs_config=""
 fi
 if [ -n "$tup" ]; then
 tup=tupt
