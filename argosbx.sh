@@ -1287,12 +1287,14 @@ echo "$ar_link"
 echo
 fi
 if grep hy2-sb "$HOME/agsbx/sb.json" >/dev/null 2>&1; then
-echo "💣【 Hysteria2 】节点信息如下："
-port_hy2=$(cat "$HOME/agsbx/port_hy2")
-hy2_link="hysteria2://$uuid@$server_ip:$port_hy2?security=tls&alpn=h3&insecure=1&sni=www.bing.com#${sxname}hy2-$hostname"
-echo "$hy2_link" >> "$HOME/agsbx/jh.txt"
-echo "$hy2_link"
-echo
+    echo "💣【 Hysteria2 】节点信息如下："
+    port_hy2=$(cat "$HOME/agsbx/port_hy2")
+    [ -n "$hy2obfs" ] && echo "混淆密码：${hy2obfs}"
+    obfs_param="${hy2obfs:+&obfs=salamander&obfs-password=${hy2obfs}}"
+    hy2_link="hysteria2://${uuid}@${server_ip}:${port_hy2}?security=tls&alpn=h3&insecure=1&sni=www.bing.com${obfs_param}#${sxname}hy2-hostname"
+    echo "$hy2_link" >> "$HOME/agsbx/jh.txt"
+    echo "$hy2_link"
+    echo
 fi
 if grep tuic5-sb "$HOME/agsbx/sb.json" >/dev/null 2>&1; then
 echo "💣【 Tuic 】节点信息如下："
