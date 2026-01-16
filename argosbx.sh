@@ -24,6 +24,7 @@ export port_vl_re=${vlpt:-''}
 export port_vm_ws=${vmpt:-''}
 export port_vw=${vwpt:-''}
 export port_hy2=${hypt:-''}
+export hy2obfs=${hy2obfs:-''}
 export port_tu=${tupt:-''}
 export port_xh=${xhpt:-''}
 export port_vx=${vxpt:-''}
@@ -463,10 +464,23 @@ cat >> "$HOME/agsbx/sb.json" <<EOF
             "certificate_path": "$HOME/agsbx/cert.pem",
             "key_path": "$HOME/agsbx/private.key"
         }
+        "obfs": {
+            "type": "salamander",
+            "password": ${obfs_config}
+        }
     },
 EOF
 else
 hyp=hyptargo
+fi
+if [ -n "$hy2obfs" ]; then
+    obfs_config=",
+        \"obfs\": {
+            \"type\": \"salamander\",
+            \"password\": \"${hy2obfs}\"
+        }"
+else
+    obfs_config=""
 fi
 if [ -n "$tup" ]; then
 tup=tupt
