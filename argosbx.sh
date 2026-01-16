@@ -463,11 +463,7 @@ cat >> "$HOME/agsbx/sb.json" <<EOF
             ],
             "certificate_path": "$HOME/agsbx/cert.pem",
             "key_path": "$HOME/agsbx/private.key"
-        }
-        "obfs": {
-            "type": "salamander",
-            "password": ${obfs_config}
-        }
+        }${obfs_config}
     },
 EOF
 else
