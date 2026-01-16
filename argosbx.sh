@@ -453,10 +453,8 @@ else
     obfs_config=""
     echo "Hysteria2混淆：未启用"
 fi
-
 port_hy2=$(cat "$HOME/agsbx/port_hy2")
 echo "Hysteria2端口：$port_hy2"
-
 cat >> "$HOME/agsbx/sb.json" <<EOF
     {
         "type": "hysteria2",
